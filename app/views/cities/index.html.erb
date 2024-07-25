@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cities</title>
+</head>
+<body>
+  <h1>Search Cities</h1>
+  <form method="get" action="/cities">
+    <label for="state_id">State:</label>
+    <select id="state_id" name="state_id">
+      <option value="">Select a state</option>
+      <option value="1">Paraná</option>
+      <option value="2">Santa Catarina</option>
+      <option value="3">Rio Grande do Sul</option>
+    </select>
+    <label for="name">City Name:</label>
+    <input type="text" id="name" name="name">
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+    <% @cities.each do |city| %>
+      <li><%= city.name %> (<%= city.state.name %>)</li>
+    <% end %>
+  </ul>
+</body>
+</html>
