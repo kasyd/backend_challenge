@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
 
   # Testing and linting
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop', require: false
 end

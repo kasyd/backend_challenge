@@ -5,21 +5,18 @@
 </head>
 <body>
   <h1>Search Cities</h1>
-  <form method="get" action="/cities">
+  <%= form_tag cities_path, method: :get do %>
     <label for="state_id">State:</label>
-    <select id="state_id" name="state_id">
-      <option value="">Select a state</option>
-      <option value="1">Paraná</option>
-      <option value="2">Santa Catarina</option>
-      <option value="3">Rio Grande do Sul</option>
-    </select>
+    <%= select_tag :state_id, options_from_collection_for_select(State.all, :id, :name, params[:state_id]), include_blank: 'Select a state' %>
+    
     <label for="name">City Name:</label>
-    <input type="text" id="name" name="name">
-    <button type="submit">Search</button>
-  </form>
+    <%= text_field_tag :name, params[:name] %>
+    
+    <%= submit_tag 'Search' %>
+  <% end %>
   <ul>
     <% @cities.each do |city| %>
-      <li><%= city.name %> (<%= city.state.name %>)</li>
+      <li><%= city.name %> (<%= city.state.uf %>) - População: <%= number_with_delimiter(city.population, delimiter: '.') %> </li>
     <% end %>
   </ul>
 </body>
